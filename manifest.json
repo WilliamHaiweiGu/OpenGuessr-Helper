@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "OpenGuessr Helper",
+    "version": "1.0",
+    "description": "Until OpenGuessr fixes this exploit :)",
+    "content_scripts": [{
+        "matches": ["*://*.openguessr.com/*"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+    }]
+}
