@@ -1,14 +1,12 @@
 (function () {
     const BOX_ID = "coords-box";
-    // Avoid injecting twice
     if (document.getElementById(BOX_ID)) return;
     const coordsRegex = /location=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/;
 
     function findCoordsPattern() {
         // check full page HTML
         const htmlMatch = document.documentElement.outerHTML.match(coordsRegex);
-        if (htmlMatch) return htmlMatch[0];
-        return null;
+        return htmlMatch ? htmlMatch[0] : null;
     }
 
     function createBox(text) {
@@ -54,9 +52,7 @@
     updateOrCreateBox();
 
     // Optional: keep checking in case the page changes dynamically
-    const observer = new MutationObserver(() => {
-        updateOrCreateBox();
-    });
+    const observer = new MutationObserver(updateOrCreateBox);
 
     observer.observe(document.documentElement, {
         childList: true,
